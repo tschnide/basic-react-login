@@ -12,21 +12,36 @@ class LoginContainer extends Component {
     console.log("handleChange");
   };
 
+  handleFormSubmit = () => {
+    console.log("handleFormSubmit");
+  };
+
   render() {
     return (
-      <div className="container">
-        <Input
-          type={"email"}
-          title={"email"}
-          name={"email"}
-          value={this.state.email}
-          handleChange={this.handleInput}
-          placeHolder={"example@email.com"}
-        />
-        <Button />
-      </div>
+      <form className="container-fluid" onSubmit={this.handleFormSubmit}>
+        <div className="container">
+          <Input
+            type={"email"}
+            title={"email"}
+            name={"Email"}
+            value={this.state.email}
+            handleChange={this.handleInput}
+            placeHolder={"example@email.com"}
+          />
+          <Button
+            style={buttonStyle}
+            type={"primary"}
+            title={"Login"}
+            action={this.handleFormSubmit}
+          />
+        </div>
+      </form>
     );
   }
 }
+
+const buttonStyle = {
+  margin: "10px 10px 10px 10px"
+};
 
 export default LoginContainer;
