@@ -11,7 +11,7 @@ class App extends Component {
         <LoginContainer />
       </div>
     );
-  }
+}
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));

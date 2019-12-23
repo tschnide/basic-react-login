@@ -8,10 +8,21 @@ class LoginContainer extends Component {
     password: ""
   };
 
+  handleInput = () => {
+    console.log("handleChange");
+  };
+
   render() {
     return (
       <div className="container">
-        <Input />
+        <Input
+          type={"email"}
+          title={"email"}
+          name={"email"}
+          value={this.state.email}
+          handleChange={this.handleInput}
+          placeHolder={"example@email.com"}
+        />
         <Button />
       </div>
     );
