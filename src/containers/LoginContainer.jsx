@@ -8,12 +8,23 @@ class LoginContainer extends Component {
     password: ""
   };
 
-  handleInput = () => {
-    console.log("handleChange");
+  handleInput = event => {
+    let value = event.target.value;
+    let name = event.target.name;
+    this.setState({ [name]: value });
+    // console.log(name + ": " + value);
+    // console.log("email: " + this.state.email);
+    // console.log("name: " + this.state.password);
   };
 
-  handleFormSubmit = () => {
-    console.log("handleFormSubmit");
+  handleFormSubmit = event => {
+    event.preventDefault();
+    const loginIsSuccessfull =
+      this.state.email === "t@gmail.com" && this.state.password === "pass"
+        ? "true"
+        : "false";
+    console.log("status: " + loginIsSuccessfull);
+    // console.log("handleFormSubmit");
   };
 
   render() {
@@ -23,10 +34,17 @@ class LoginContainer extends Component {
           <Input
             type={"email"}
             title={"email"}
-            name={"Email"}
+            name={"email"}
             value={this.state.email}
             handleChange={this.handleInput}
             placeHolder={"example@email.com"}
+          />
+          <Input
+            type={"password"}
+            title={"password"}
+            name={"password"}
+            value={this.state.password}
+            handleChange={this.handleInput}
           />
           <Button
             style={buttonStyle}
