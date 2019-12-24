@@ -1,17 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./components/App";
 import "./index.css";
-import LoginContainer from "./containers/LoginContainer";
 
-class App extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
-        <LoginContainer />
-      </div>
-    );
-}
-}
-
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
