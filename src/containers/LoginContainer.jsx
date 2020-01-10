@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 class LoginContainer extends Component {
   state = {
@@ -12,19 +13,15 @@ class LoginContainer extends Component {
     let value = event.target.value;
     let name = event.target.name;
     this.setState({ [name]: value });
-    // console.log(name + ": " + value);
-    // console.log("email: " + this.state.email);
-    // console.log("name: " + this.state.password);
   };
 
+  // if the email and pass are correct, add /home to the url
   handleFormSubmit = event => {
     event.preventDefault();
     const loginIsSuccessfull =
       this.state.email === "t@gmail.com" && this.state.password === "pass"
-        ? "true"
+        ? this.props.history.push("/home")
         : "false";
-    console.log("status: " + loginIsSuccessfull);
-    // console.log("handleFormSubmit");
   };
 
   render() {
