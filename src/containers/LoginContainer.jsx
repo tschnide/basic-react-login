@@ -29,7 +29,8 @@ class LoginContainer extends Component {
   validate = () => {
     let email = this.state.email;
     let password = this.state.password;
-    let properEmailRegex = "\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b";
+    // let properEmailRegex = "\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b";
+    let properEmailRegex = "t@gmail.com";
 
     // The email format is correct
     if (email === "" || password === "" || !email.match(properEmailRegex)) {
@@ -42,7 +43,7 @@ class LoginContainer extends Component {
         this.setState({
           emailError: "Please enter a valid email address."
         });
-      } 
+      }
       // The password is filled in
       if (password === "") {
         this.setState({
