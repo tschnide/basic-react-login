@@ -1,12 +1,23 @@
 import React, { Component } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+let defaultState = {
+  email: "",
+  password: "",
+  emailError: "",
+  passwordError: ""
+};
 
 class LoginContainer extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    emailError: "",
+    passwordError: ""
   };
 
   handleInput = event => {
