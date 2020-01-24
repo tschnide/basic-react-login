@@ -9,7 +9,8 @@ let defaultState = {
   email: "",
   password: "",
   emailError: "",
-  passwordError: ""
+  passwordError: "",
+  emailOrPasswordError: ""
 };
 
 class LoginContainer extends Component {
@@ -32,16 +33,18 @@ class LoginContainer extends Component {
     let properEmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     //The email format is correct
-    if (email === "" || password === "" || !email.test(properEmailRegex)) {
+    if (email === "" || password === "" || (!properEmailRegex.test(email))) {
       // The email is filled in
       if (email === "") {
         this.setState({
           emailError: "Please enter an email address"
         });
-      } else if (!email.match(properEmailRegex)) {
+      } else if (!properEmailRegex.test(email)) {
         this.setState({
           emailError: "Please enter a valid email address."
         });
+      } else {
+        this.setState({ emailError: "" });
       }
       // The password is filled in
       if (password === "") {
@@ -52,11 +55,15 @@ class LoginContainer extends Component {
         this.setState({ passwordError: "" });
       }
       return false;
-    } else {
-      this.setState({ emailError: "" });
     }
-    // The email and password are correct (Finish this)
-    return true;
+    if (properEmailRegex.test(email) && password) {
+      this.setState({ emailError: "", passwordError: "" });
+      if (email === "t@gmail.com" && password === "pass") {
+        return true;
+      } else {
+        this.setState({ emailOrPasswordError: "The email or password you entered is not in our system." })
+      };
+    };
   };
 
   // if the email and pass are correct, add /home to the url
@@ -104,12 +111,19 @@ class LoginContainer extends Component {
             </Form.Text>
           </Row>
           <Row>
-            <Button
-              style={buttonStyle}
-              type={"primary"}
-              title={"Login"}
-              action={this.handleFormSubmit}
-            />
+            <Col>
+              <Button
+                style={buttonStyle}
+                type={"primary"}
+                title={"Login"}
+                action={this.handleFormSubmit}
+              />
+            </Col>
+            <Col>
+              <Form.Text style={{ color: "red" }}>
+                {this.state.emailOrPasswordError}
+              </Form.Text>
+            </Col>
           </Row>
         </div>
       </Form>
