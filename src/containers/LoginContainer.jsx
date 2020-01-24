@@ -32,6 +32,9 @@ class LoginContainer extends Component {
     let password = this.state.password;
     let properEmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+    // Reset error message
+    this.setState({ emailOrPasswordError: "" })
+
     //The email format is correct
     if (email === "" || password === "" || (!properEmailRegex.test(email))) {
       // The email is filled in
@@ -61,7 +64,7 @@ class LoginContainer extends Component {
       if (email === "t@gmail.com" && password === "pass") {
         return true;
       } else {
-        this.setState({ emailOrPasswordError: "The email or password you entered is not in our system." })
+        this.setState({ emailOrPasswordError: "The email/password combination you entered is incorrect. Please try again" })
       };
     };
   };
