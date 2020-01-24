@@ -29,11 +29,10 @@ class LoginContainer extends Component {
   validate = () => {
     let email = this.state.email;
     let password = this.state.password;
-    // let properEmailRegex = "\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b";
-    let properEmailRegex = "t@gmail.com";
+    let properEmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    // The email format is correct
-    if (email === "" || password === "" || !email.match(properEmailRegex)) {
+    //The email format is correct
+    if (email === "" || password === "" || !email.test(properEmailRegex)) {
       // The email is filled in
       if (email === "") {
         this.setState({
